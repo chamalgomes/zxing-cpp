@@ -57,6 +57,7 @@ jobs:
 
   build-sdist:
     name: Build source distribution
+    if: github.event_name == 'release' || github.event.inputs.publish == 'y'
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
