@@ -45,6 +45,11 @@ jobs:
         CIBW_BUILD_VERBOSITY: 1
         CIBW_TEST_COMMAND: python {package}/test.py
         CIBW_TEST_SOURCES: wrappers/python/test.py
+        CIBW_BEFORE_ALL_LINUX: >
+          cmake -S . -B build-static -DBUILD_SHARED_LIBS=OFF -DZXING_EXAMPLES=OFF -DZXING_PYTHON_MODULE=OFF -DZXING_C_API=OFF
+          && cmake --build build-static --config Release
+        CIBW_ENVIRONMENT: >
+          ZXING_CPP_DIR=$(python -c "import os; print(os.path.abspath('build-static'))")
 
     - name: Upload wheels
       uses: actions/upload-artifact@v4
