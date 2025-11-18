@@ -41,8 +41,3 @@ include-package-data = false
 # tag_regex = "^v?(\\d+\\.\\d+\\.\\d+)"
 # fallback_version = "0.0.0"
 # write_to = "zxingcpp/_version.py"
-
-[tool.cibuildwheel]
-environment = { CIBW_SKIP="*musllinux*", CIBW_BUILD="cp310-*", CIBW_BUILD_VERBOSITY=1 }
-test-sources = ["/wrappers/python/test.py"]
-test-command = "python tests.py"
